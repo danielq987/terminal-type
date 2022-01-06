@@ -4,6 +4,8 @@
 
 using std::string;
 
+const int MAX_WINDOW_WIDTH = 60;
+
 struct WindowInit {
 	int height;
 	int width;

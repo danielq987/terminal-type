@@ -21,7 +21,7 @@ void destroy_win(WINDOW *local_win) {
 int get_max_width() {
 	int max_w, max_h;
 	getmaxyx(stdscr, max_h, max_w);
-	return std::min(max_w, 60);
+	return max_w;
 }
 
 void relative_move(WINDOW *window, int dy, int dx) {
@@ -63,7 +63,9 @@ void BorderedWindow::set_dimensions(WindowInit d) {
 
 TextWindow::TextWindow(string s) {
 	type_string = s;
-	window_init.width = get_max_width();
+	int max_width = get_max_width();
+	window_init.width = std::min(max_width, MAX_WINDOW_WIDTH);
+	window_init.startx = (max_width - window_init.width) / 2;
 	this->set_dimensions(window_init);
 	BorderedWindow::create_window();
 
@@ -99,7 +101,9 @@ void TextWindow::set_word_start(int y, int x) {
 }
 
 InputWindow::InputWindow() {
-	window_init.width = get_max_width();
+	int max_width = get_max_width();
+	window_init.width = std::min(max_width, MAX_WINDOW_WIDTH);
+	window_init.startx = (max_width - window_init.width) / 2;
 	this->set_dimensions(window_init);
 	BorderedWindow::create_window();
 	wmove(get_win(), 0, 0);

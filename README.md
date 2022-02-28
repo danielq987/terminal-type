@@ -1,6 +1,6 @@
 # terminal-type
 A basic terminal typing test written in C++ with the ncurses library.
 
-mostly an exercise for me to refamiliarize myself with C++ and OOP
+Mostly an exercise for me to refamiliarize myself with C++ and OOP.
 
-Test addition #2
+Still a work in progress! Aiming to support word wrapping and WPM statistics next...
